@@ -6,7 +6,6 @@ function getRandomHexColor() {
 const buttonCreate = document.querySelector('#controls button[data-create]');
 const buttonDelete = document.querySelector('#controls button[data-destroy]');
 const divBoxes = document.querySelector('#boxes');
-
 const input = document.querySelector('input[type="number"]');
 
 buttonCreate.addEventListener('click', event => {
@@ -18,14 +17,18 @@ buttonCreate.addEventListener('click', event => {
 
   function createBoxes(amount) {
     if (amount > 1 && amount <= 100) {
+      const fragment = document.createDocumentFragment();
+
       for (let i = 0; i < amount; i++) {
         const square = document.createElement('div');
         const size = 30 + i * 10;
         square.style.width = `${size}px`;
         square.style.height = `${size}px`;
         square.style.backgroundColor = getRandomHexColor();
-        divBoxes.append(square);
+
+        fragment.append(square);
       }
+      divBoxes.append(fragment);
     }
     input.value = '';
   }
